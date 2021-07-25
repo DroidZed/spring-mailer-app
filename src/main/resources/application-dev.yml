@@ -13,8 +13,6 @@ graphiql:
     enabled: true
     version: latest
   props:
-    resources:
-      query: graphql/query.graphqls
     variables:
       editorTheme: "dark"
 
