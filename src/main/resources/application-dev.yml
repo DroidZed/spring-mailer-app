@@ -1,0 +1,76 @@
+graphiql:
+  mapping: /graphiql
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
+  subscriptions:
+    timeout: 30
+    reconnect: false
+  basePath: /
+  enabled: true
+  pageTitle: GraphiQL
+  cdn:
+    enabled: true
+    version: latest
+  props:
+    resources:
+      query: graphql/query.graphqls
+    variables:
+      editorTheme: "dark"
+
+voyager:
+  enabled: true
+  basePath: /
+  mapping: /voyager
+  endpoint: /graphql
+  cdn:
+    enabled: true
+    version: latest
+  pageTitle: Voyager
+  displayOptions:
+    skipRelay: true
+    skipDeprecated: true
+    rootType: Query
+    sortByAlphabet: false
+    showLeafFields: true
+    hideRoot: false
+  hideDocs: false
+  hideSettings: false
+
+graphql:
+  playground:
+    mapping: /playground
+    endpoint: /graphql
+    subscriptionEndpoint: /subscriptions
+    enabled: true
+    pageTitle: Playground
+    cdn:
+      enabled: true
+      version: latest
+    settings:
+      editor:
+        cursorShape: line
+        fontFamily: "'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace"
+        fontSize: 14
+        reuseHeaders: true
+        theme: dark
+      prettier:
+        printWidth: 80
+        tabWidth: 2
+        useTabs: true
+      request:
+        credentials: include
+      schema:
+        polling:
+          enable: true
+          endpointFilter: "*localhost*"
+          interval: 2000
+        disableComments: true
+      tracing.hideTracingResponse: true
+    headers:
+      headerFor: AllTabs
+      tools:
+        schema-location-pattern: "graphql/**/*.graphqls"
+        # Enable or disable the introspection query. Disabling it puts your server in contravention of the GraphQL
+        # specification and expectations of most clients, so use this option with caution
+        introspection-enabled: true
