@@ -1,4 +1,4 @@
-##Spring Mailer App
+## **_Spring Mailer App_**
 
 This app is my open source implementation of an SMTP server using Spring Boot and GraphQL.
 
