@@ -1,0 +1,5 @@
+input MailInput {
+    from: String!
+    subject: String
+    body: String
+}

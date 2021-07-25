@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,34 +68,10 @@
             <version>${graphql.version}</version>
         </dependency>
 
-        <!-- to embed Altair tool -->
-        <dependency>
-            <groupId>com.graphql-java-kickstart</groupId>
-            <artifactId>altair-spring-boot-starter</artifactId>
-            <version>${graphql.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- to embed GraphiQL tool -->
-        <dependency>
-            <groupId>com.graphql-java-kickstart</groupId>
-            <artifactId>graphiql-spring-boot-starter</artifactId>
-            <version>${graphql.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- to embed GraphQL Playground tool -->
         <dependency>
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>playground-spring-boot-starter</artifactId>
-            <version>${graphql.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- to embed Voyager tool -->
-        <dependency>
-            <groupId>com.graphql-java-kickstart</groupId>
-            <artifactId>voyager-spring-boot-starter</artifactId>
             <version>${graphql.version}</version>
             <scope>runtime</scope>
         </dependency>

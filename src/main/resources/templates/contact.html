@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Contact mail</title>
+</head>
+<body>
+<h1>Hi there !</h1>
+
+<h3>You got a new message from : <span th:text="${contact.from}"></span> </h3>
+
+<p>Content : <br>
+    <span th:text="${contact.body}"></span>
+</p>
+
+<h5>
+    <em>
+        Sent using Spring Mailer app. By <b>DroidZed</b>
+    </em>
+</h5>
+</body>
+</html>
