@@ -45,17 +45,12 @@ public class WebConfig implements WebMvcConfigurer {
 
         var viewResolver = new ThymeleafViewResolver();
 
-        String[] exclusions = {"/playground", "playground", "/"};
+        String[] exclusions = {"/playground", "playground"};
 
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
         viewResolver.setExcludedViewNames(exclusions);
 
         return viewResolver;
-    }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index.html");
     }
 }
