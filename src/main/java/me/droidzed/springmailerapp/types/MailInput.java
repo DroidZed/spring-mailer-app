@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 public class MailInput {
 
     private String from;
+    private String name;
     private String subject;
     private String body;
 }

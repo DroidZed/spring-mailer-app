@@ -1,10 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Spring Mailer App</title>
+  <meta charset="UTF-8" />
+  <title>Spring Mailer App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+  <link rel="stylesheet" href="./css/prism.css" />
+
+  <link rel="stylesheet" href="./css/main.css" />
 </head>
+
 <body>
-<p>Welcome home !</p>
+  <a class="github-fork-ribbon" href="https://github.com/DroidZed/spring-mailer-app" data-ribbon="Fork me on GitHub"
+    title="Fork me on GitHub">Fork me on GitHub</a>
+  <div class="container pt-5">
+    <div class="row mt-5 mb-5">
+      <p class="title">Spring Mailer App</p>
+    </div>
+    <div class="row">
+      <h2>This app is used as a backend for sending emails.</h2>
+      <p>It's built using <span class="graphql">GraphQL</span> and serving two functionalities.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <figure>
+          <figcaption>How to call the sendMmail Endpoint:</figcaption>
+          <pre>
+              <code class="language-graphql">
+mutation {
+  sendMail(mail: 
+  { 
+    from: "example@example.com",
+    name: "Someone Something"
+    subject: "testing the api", 
+    body: "lorem ipsum" 
+  }
+   ) 
+  { 
+    msg 
+  }
+}
+            </code>
+          </pre>
+        </figure>
+      </div>
+      <div class="col-md-4 p-5">
+        <p>
+          The <span class="code">mutation</span> keyword is used to indicate
+          that the client wants to mutate the data.</p>
+
+        <p>We call the mutation sendMail using the parameters inside { }</p>
+        <p>
+          In retrun we expect a message which is an object containing the
+          <span class="code">msg</span> field.
+        </p>
+      </div>
+      <div class="col-md-4">
+        <figure>
+          <figcaption>Greeting function, this is used for <em> testing only </em>:</figcaption>
+          <pre>
+            <code class="language-graphql">
+query Greeting { hello }
+           </code>
+         </pre>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <script src="./js/prism.js"></script>
 </body>
+
 </html>

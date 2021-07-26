@@ -1,0 +1,17 @@
+.title {
+	font-size: 8vh;
+	font-weight: bold;
+	text-align: center;
+	font-family: 'Consolas', serif;
+}
+
+.code {
+	font-family: 'Consolas', serif;
+	background-color: rgb(194, 194, 194);
+}
+
+.graphql {
+	color: #ff7bd4;
+	text-decoration: underline;
+	font-weight: 500;
+}

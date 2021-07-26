@@ -34,4 +34,10 @@ graphql.playground:
 spring:
     devtools:
       restart:
-        additional-paths: classpath:/templates/
+        additional-paths: /templates/**
+      livereload:
+        enabled: true
+
+logging:
+  level:
+    web: debug
