@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class GreeterServiceImpl implements GreeterService {
     @Override
     public String greeting() {
-        return "Hello there, this API does not have anything for GET requests, try going back to the home page and check what you can do !";
+        return "This is used to test if GraphQL works or not.";
     }
 }

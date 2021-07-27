@@ -1,3 +1,9 @@
+@import url(../assets/fonts/CascadiaCode.ttf);
+
+*:root {
+	--color-gql: #ff7bd4;
+}
+
 .title {
 	font-size: 8vh;
 	font-weight: bold;
@@ -5,13 +11,39 @@
 	font-family: 'Consolas', serif;
 }
 
-.code {
+.important-keywords {
 	font-family: 'Consolas', serif;
 	background-color: rgb(194, 194, 194);
 }
 
-.graphql {
-	color: #ff7bd4;
-	text-decoration: underline;
+.graphql,
+.graphql:hover {
+	color: var(--color-gql);
 	font-weight: 500;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+	padding-top: 0;
+	padding-bottom: 0;
+	margin: 0;
+
+	white-space: pre-wrap;
+	line-height: 1.2;
+	tab-size: 2;
+
+	font-family: 'Cascadia Code';
+	font-weight: 350;
+	font-size: 0.95rem;
+}
+
+.phrases {
+	list-style-type: '- ';
+}
+
+@media screen and (max-width: 919px) {
+	code[class*='language-'],
+	pre[class*='language-'] {
+		margin: 0.5em;
+	}
 }

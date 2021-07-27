@@ -15,61 +15,115 @@
 </head>
 
 <body>
-  <a class="github-fork-ribbon" href="https://github.com/DroidZed/spring-mailer-app" data-ribbon="Fork me on GitHub"
-    title="Fork me on GitHub">Fork me on GitHub</a>
-  <div class="container pt-5">
-    <div class="row mt-5 mb-5">
+  <div class="container">
+    <a class="github-fork-ribbon" href="https://github.com/DroidZed/spring-mailer-app" data-ribbon="Fork me on GitHub"
+      title="Fork me on GitHub">Fork me on GitHub</a>
+    <div class="row my-3">
       <p class="title">Spring Mailer App</p>
     </div>
     <div class="row">
       <h2>This app is used as a backend for sending emails.</h2>
-      <p>It's built using <span class="graphql">GraphQL</span> and serving two functionalities.</p>
+      <p>It's built using <a href="https://graphql.org/" target="_blank" class="graphql">GraphQL</a> and serving two
+        functionalities.
+      </p>
     </div>
     <div class="row">
-      <div class="col-md-4">
-        <figure>
-          <figcaption>How to call the sendMmail Endpoint:</figcaption>
-          <pre>
-              <code class="language-graphql">
-mutation {
-  sendMail(mail: 
-  { 
-    from: "example@example.com",
-    name: "Someone Something"
-    subject: "testing the api", 
-    body: "lorem ipsum" 
-  }
-   ) 
-  { 
-    msg 
-  }
-}
-            </code>
-          </pre>
-        </figure>
-      </div>
-      <div class="col-md-4 p-5">
-        <p>
-          The <span class="code">mutation</span> keyword is used to indicate
-          that the client wants to mutate the data.</p>
-
-        <p>We call the mutation sendMail using the parameters inside { }</p>
-        <p>
-          In retrun we expect a message which is an object containing the
-          <span class="code">msg</span> field.
-        </p>
-      </div>
-      <div class="col-md-4">
-        <figure>
-          <figcaption>Greeting function, this is used for <em> testing only </em>:</figcaption>
-          <pre>
-            <code class="language-graphql">
-query Greeting { hello }
-           </code>
-         </pre>
-        </figure>
+      <div class="alert alert-primary" role="alert">
+        <b>sendEmail</b> endpoint, used for..you guessed it, delivering the emails 😋
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-6 language-graphql">
+        <div>
+          <pre tabindex="0">
+            <code>
+mutation deliverEmail {
+
+	sendMail (
+
+		mail: {
+
+			from: "example@example.com"
+			name: "Someone Something"
+			subject: "testing the api"
+			body: "lorem ipsum"
+		}
+	) 
+  {
+		msg
+	}
+}
+
+          </code>
+        </pre>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-6 d-flex flex-column language-json">
+        <div>
+          <ul class="phrases">
+            <li>
+              The <span class="important-keywords">mutation</span> keyword is used to indicate that the client wants to
+              mutate the data.
+            </li>
+            <li>
+              We call the mutation <span class="important-keywords">sendMail</span> using the required parameters.
+            </li>
+            <li>
+              In retrun we expect a message which is an object containing the <span
+                class="important-keywords">msg</span> field.
+            </li>
+          </ul>
+
+          </ul>
+        </div>
+        <div>
+          <pre>
+            <code>
+{
+	"data": {
+
+		"sendMail": {
+
+			"msg": "Message sent to aymen.dragon5@gmail.com"
+		}
+	}
+}
+
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="alert alert-primary" role="alert">
+        <b>Greeting</b> function, this is used for <em><u>testing only</u></em> 🛠️
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-6 language-graphql">
+        <pre>
+          <code>
+query Greeting {
+
+	  hello
+}
+          </code>
+        </pre>
+      </div>
+      <div class="col-md-12 col-lg-6 language-json">
+        <pre>
+          <code>
+{
+	"data": {
+
+		"hello": "This is used to test if GraphQL works or not."
+	}
+}
+          </code>
+        </pre>
+      </div>
+    </div>
+  </div>
   </div>
   <script src="./js/prism.js"></script>
 </body>
