@@ -12,14 +12,22 @@
 }
 
 .important-keywords {
-	font-family: 'Consolas', serif;
-	background-color: rgb(194, 194, 194);
+	/* font-family: 'Consolas', serif; */
+	background-color: #444444;
+	font-weight: 500;
+	color: orange;
+	padding: 2px 4px 2px 4px;
+	border-radius: 3px;
 }
 
 .graphql,
 .graphql:hover {
 	color: var(--color-gql);
 	font-weight: 500;
+}
+
+.phrases {
+	list-style-type: '- ';
 }
 
 code[class*='language-'],
@@ -35,10 +43,6 @@ pre[class*='language-'] {
 	font-family: 'Cascadia Code';
 	font-weight: 350;
 	font-size: 0.95rem;
-}
-
-.phrases {
-	list-style-type: '- ';
 }
 
 @media screen and (max-width: 919px) {
