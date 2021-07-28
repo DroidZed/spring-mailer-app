@@ -1,4 +1,9 @@
-@import url(../assets/fonts/CascadiaCode.ttf);
+@font-face {
+	font-family: 'Cascadia Code';
+	src: url(../assets/fonts/CascadiaCode.ttf) format('truetype'),
+		url(../assets/fonts/CascadiaCode.otf) format('opentype'),
+		url(../assets/fonts/CascadiaCode.woff2) format('woff2');
+}
 
 *:root {
 	--color-gql: #ff7bd4;
