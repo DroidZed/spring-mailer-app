@@ -7,6 +7,9 @@
 
 *:root {
 	--color-gql: #ff7bd4;
+	--color-operation: #cc99cd;
+	--color-response-field: #f8c555;
+	--color-action: #ccc;
 }
 
 .title {
@@ -17,7 +20,7 @@
 }
 
 .important-keywords {
-	/* font-family: 'Consolas', serif; */
+	font-family: 'Cascadia Code', 'Consolas', serif;
 	background-color: #444444;
 	font-weight: 500;
 	color: orange;

@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: production
   application:
     name: Spring-Mailer-App
   mail:
@@ -10,8 +10,10 @@ spring:
     port: ${env.SERVER_PORT}
     properties:
       mail:
-        smtp.auth: true
-        starttls.enable: true
+        smtp:
+          auth: true
+        starttls:
+          enable: true
 
 graphql:
   servlet:

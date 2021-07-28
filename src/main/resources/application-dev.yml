@@ -18,7 +18,7 @@ graphql.playground:
     schema:
       polling:
         enable: true
-        endpointFilter: "*localhost*"
+        endpointFilter: '*localhost*'
         interval: 2000
       disableComments: true
     tracing:
@@ -26,12 +26,14 @@ graphql.playground:
   headers:
     headerFor: AllTabs
     tools:
-      schema-location-pattern: "graphql/**/*.graphqls"
+      schema-location-pattern: 'graphql/**/*.graphqls'
       # Enable or disable the introspection query. Disabling it puts your server in contravention of the GraphQL
       # specification and expectations of most clients, so use this option with caution
       introspection-enabled: true
 
 spring:
+  profiles:
+    active: dev
     devtools:
       restart:
         additional-paths: /templates/**
