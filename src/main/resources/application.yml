@@ -15,11 +15,21 @@ spring:
         starttls:
           enable: true
 
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
 graphql:
   servlet:
-    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
-    exception-handlers-enabled: true
     context-setting: PER_REQUEST_WITH_INSTRUMENTATION
     max-query-depth: 20
+    websocket:
+      enabled: false
+    actuator-metrics: true
 
 app.master: ${env.TO}

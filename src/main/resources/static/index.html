@@ -2,39 +2,40 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>Spring Mailer App</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spring Mailer App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
 
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
-  <link rel="stylesheet" href="./css/prism.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css"/>
+    <link rel="stylesheet" href="./css/prism.css"/>
 
-  <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/main.css"/>
 </head>
 
 <body>
-  <div class="container">
-    <a class="github-fork-ribbon" href="https://github.com/DroidZed/spring-mailer-app" data-ribbon="Fork me on GitHub"
-      title="Fork me on GitHub">Fork me on GitHub</a>
+<div class="container">
+    <a class="github-fork-ribbon black" href="https://github.com/DroidZed/spring-mailer-app" data-ribbon="Fork me on GitHub"
+       title="Fork me on GitHub">Fork me on GitHub</a>
     <div class="row my-3">
-      <p class="title">Spring Mailer App</p>
+        <p class="title">Spring Mailer App</p>
     </div>
     <div class="row">
-      <h2>This app is used as a backend for sending emails.</h2>
-      <p>It's built using <a href="https://graphql.org/" target="_blank" class="graphql">GraphQL</a> and serving two
-        functionalities.
-      </p>
+        <h2>This app is used as a backend for sending emails.</h2>
+        <p>It's built using <a href="https://graphql.org/" target="_blank" class="graphql">GraphQL</a> and serving two
+            functionalities.
+        </p>
     </div>
     <div class="row">
-      <div class="alert alert-primary" role="alert">
-        <b>sendEmail</b> endpoint, used for..you guessed it, delivering emails 😋
-      </div>
+        <div class="alert alert-primary" role="alert">
+            <b>sendEmail</b> endpoint, used for..you guessed it, delivering emails 😋
+        </div>
     </div>
     <div class="row">
-      <div class="col-md-12 col-lg-6 language-graphql">
-        <div>
+        <div class="col-md-12 col-lg-6 language-graphql">
+            <div>
           <pre tabindex="0">
             <code>
 mutation deliverEmail {
@@ -56,29 +57,27 @@ mutation deliverEmail {
 
           </code>
         </pre>
+            </div>
         </div>
-      </div>
-      <div class="col-md-12 col-lg-6 d-flex flex-column language-json">
-        <div>
-          <ul class="phrases">
-            <li>
-              The <span class="important-keywords">mutation</span> keyword is used to indicate that the client
-              wants to
-              mutate the data.
-            </li>
-            <li>
-              We call the mutation <span class="important-keywords">sendMail</span> using the required
-              parameters.
-            </li>
-            <li>
-              In retrun we expect a message which is an object containing the <span
-                class="important-keywords">msg</span> field.
-            </li>
-          </ul>
-
-          </ul>
-        </div>
-        <div>
+        <div class="col-md-12 col-lg-6 d-flex flex-column language-json">
+            <div>
+                <ul style="list-style-type: '- ';">
+                    <li>
+                        The <span class="important-keywords">mutation</span> keyword is used to indicate that the client
+                        wants to
+                        mutate the data.
+                    </li>
+                    <li>
+                        We call the mutation <span class="important-keywords">sendMail</span> using the required
+                        parameters.
+                    </li>
+                    <li>
+                        In return we expect a message which is an object containing the <span
+                            class="important-keywords">msg</span> field.
+                    </li>
+                </ul>
+            </div>
+            <div>
           <pre>
             <code>
 {
@@ -93,16 +92,16 @@ mutation deliverEmail {
 
             </code>
           </pre>
+            </div>
         </div>
-      </div>
     </div>
     <div class="row pt-3">
-      <div class="alert alert-primary" role="alert">
-        <b>Greeting</b> function, this is used for <em><u>testing only</u></em> 🛠️
-      </div>
+        <div class="alert alert-primary" role="alert">
+            <b>Greeting</b> function, this is used for <em><u>testing only</u></em> 🛠️
+        </div>
     </div>
     <div class="row">
-      <div class="col-md-12 col-lg-6 language-graphql">
+        <div class="col-md-12 col-lg-6 language-graphql">
         <pre>
           <code>
 query Greeting {
@@ -111,8 +110,8 @@ query Greeting {
 }
           </code>
         </pre>
-      </div>
-      <div class="col-md-12 col-lg-6 language-json">
+        </div>
+        <div class="col-md-12 col-lg-6 language-json">
         <pre>
           <code>
 {
@@ -123,11 +122,10 @@ query Greeting {
 }
           </code>
         </pre>
-      </div>
+        </div>
     </div>
-  </div>
-  </div>
-  <script src="./js/prism.js"></script>
+</div>
+<script src="./js/prism.js"></script>
 </body>
 
 </html>

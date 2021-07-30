@@ -10,12 +10,13 @@
     </parent>
     <groupId>me.droidzed</groupId>
     <artifactId>spring-mailer-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
     <name>spring-mailer-app</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Spring mailer app for my website</description>
     <properties>
         <java.version>16</java.version>
         <graphql.version>11.1.0</graphql.version>
+        <start-class>me.droidzed.springmailerapp.SpringMailerAppApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -31,12 +32,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -57,7 +52,7 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
+            <version>21.0.1</version>
             <scope>compile</scope>
         </dependency>
 
@@ -66,14 +61,6 @@
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphql-spring-boot-starter</artifactId>
             <version>${graphql.version}</version>
-        </dependency>
-
-        <!-- to embed GraphQL Playground tool -->
-        <dependency>
-            <groupId>com.graphql-java-kickstart</groupId>
-            <artifactId>playground-spring-boot-starter</artifactId>
-            <version>${graphql.version}</version>
-            <scope>runtime</scope>
         </dependency>
 
         <!-- Dot Env -->
@@ -102,7 +89,6 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                    <addResources>true</addResources>
                 </configuration>
             </plugin>
         </plugins>

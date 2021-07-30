@@ -4,6 +4,11 @@
       "name": "app.master",
       "type": "java.lang.String",
       "description": "The application master's email."
+    },
+    {
+      "name": "graphql.servlet.websocket.enabled",
+      "type": "java.lang.String",
+      "description": "Disabling the websocket servlet for graphql."
     }
   ]
 }
