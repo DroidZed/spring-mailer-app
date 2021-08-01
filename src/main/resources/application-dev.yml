@@ -1,0 +1,19 @@
+graphql:
+  servlet:
+    context-setting: PER_REQUEST_WITH_INSTRUMENTATION
+    max-query-depth: 2
+    websocket:
+      enabled: false
+    actuator-metrics: true
+    cors:
+      allowed-origins:
+      - ${env.LOCAL}
+    cors-enabled: true
+
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins:
+          - ${env.LOCAL}
+        allowed-methods: GET

@@ -26,7 +26,6 @@ graphql:
     actuator-metrics: true
     cors:
       allowed-origins:
-      - ${env.LOCAL}
       - ${env.PREVIEW}
       - ${env.PROD}
     cors-enabled: true
@@ -36,7 +35,6 @@ management:
     web:
       cors:
         allowed-origins:
-          - ${env.LOCAL}
           - ${env.PREVIEW}
           - ${env.PROD}
         allowed-methods: GET
