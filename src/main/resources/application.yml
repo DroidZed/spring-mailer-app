@@ -14,22 +14,32 @@ spring:
           auth: true
         starttls:
           enable: true
-
-management:
-  endpoint:
-    shutdown:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: health,info
+  thymeleaf:
+    cache: false
 
 graphql:
   servlet:
     context-setting: PER_REQUEST_WITH_INSTRUMENTATION
-    max-query-depth: 20
+    max-query-depth: 2
     websocket:
       enabled: false
     actuator-metrics: true
+    cors:
+      allowed-origins:
+      - ${env.LOCAL}
+      - ${env.PREVIEW}
+      - ${env.PROD}
+    cors-enabled: true
 
-app.master: ${env.TO}
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins:
+          - ${env.LOCAL}
+          - ${env.PREVIEW}
+          - ${env.PROD}
+        allowed-methods: GET
+
+app:
+  master: ${env.TO}
