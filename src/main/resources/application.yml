@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: production
+    active: prod
   application:
     name: Spring-Mailer-App
   mail:
@@ -24,19 +24,12 @@ graphql:
     websocket:
       enabled: false
     actuator-metrics: true
-    cors:
-      allowed-origins:
-      - ${env.PREVIEW}
-      - ${env.PROD}
     cors-enabled: true
 
 management:
   endpoints:
     web:
       cors:
-        allowed-origins:
-          - ${env.PREVIEW}
-          - ${env.PROD}
         allowed-methods: GET
 
 app:

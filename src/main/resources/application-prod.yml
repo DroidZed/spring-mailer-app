@@ -2,11 +2,13 @@ graphql:
   servlet:
     cors:
       allowed-origins:
-      - ${env.LOCAL}
+      - ${env.PREVIEW}
+      - ${env.PROD}
 
 management:
   endpoints:
     web:
       cors:
         allowed-origins:
-          - ${env.LOCAL}
+          - ${env.PREVIEW}
+          - ${env.PROD}
