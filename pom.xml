@@ -89,6 +89,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <finalName>spring-mailer-backend</finalName>
                 </configuration>
             </plugin>
         </plugins>
