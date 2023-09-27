@@ -1,0 +1,21 @@
+version: '3'
+services:
+  spring-mailer-app:
+    environment:
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USRNAME=${SMTP_USRNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - TO=${TO}
+      - SERVER_PORT=${SERVER_PORT}
+      - IMAGE_TAG=${IMAGE_TAG}
+    image: droidzed/spring-mailer-app:${IMAGE_TAG}
+    networks:
+      - spring-mailer
+    container_name: spring-graph-mailer
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+
+networks:
+  spring-mailer:
+    driver: bridge
