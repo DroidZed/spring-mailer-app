@@ -1,4 +1,10 @@
+.idea/
+*.iml
+*.iws
 target/
+.sonar/
+.sonarlint/
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -26,6 +32,3 @@ build/
 *.iws
 *.iml
 *.ipr
-
-### Local Configuration ###
-.env
