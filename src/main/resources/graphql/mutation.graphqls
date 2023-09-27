@@ -1,7 +1,0 @@
-type Response {
-    msg: String!
-}
-
-type Mutation {
-    sendMail(mail: MailInput!): Response!
-}

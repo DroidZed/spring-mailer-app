@@ -1,6 +1,0 @@
-input MailInput {
-	from: String!
-	name: String!
-	subject: String!
-	body: String!
-}

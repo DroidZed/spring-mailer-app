@@ -1,0 +1,18 @@
+type Response {
+    msg: String!
+}
+
+input MailInput {
+    from: String!
+    name: String!
+    subject: String!
+    body: String!
+}
+
+type Query {
+    hello : String
+}
+
+type Mutation {
+    sendMail(mail: MailInput!): Response!
+}

@@ -1,7 +1,6 @@
-package me.droidzed.springmailerapp.impl;
+package me.droidzed.springmailerapp.service.mailer;
 
 import lombok.extern.slf4j.Slf4j;
-import me.droidzed.springmailerapp.service.MailerService;
 import me.droidzed.springmailerapp.types.MailInput;
 import me.droidzed.springmailerapp.types.Response;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +13,6 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
-
 
 import static java.text.MessageFormat.format;
 
@@ -41,6 +39,10 @@ public class MailerServiceImpl implements MailerService {
     public Response sendMailToMaster(MailInput input) throws MessagingException {
 
         log.info("Sending email...");
+
+        if (input == null) {
+            return new Response("Value is empty!");
+        }
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 

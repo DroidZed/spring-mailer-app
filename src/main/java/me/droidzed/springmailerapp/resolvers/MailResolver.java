@@ -1,20 +1,24 @@
 package me.droidzed.springmailerapp.resolvers;
 
-import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.AllArgsConstructor;
-import me.droidzed.springmailerapp.service.MailerService;
+import me.droidzed.springmailerapp.service.mailer.MailerService;
 import me.droidzed.springmailerapp.types.MailInput;
 import me.droidzed.springmailerapp.types.Response;
-import org.springframework.stereotype.Component;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.stereotype.Controller;
+
 import javax.mail.MessagingException;
 
-@Component
+
+@Controller
 @AllArgsConstructor
-public class MailResolver implements GraphQLMutationResolver {
+public class MailResolver {
 
     private final MailerService mailerService;
 
-    public Response sendMail(MailInput input) throws MessagingException {
+    @MutationMapping
+    public Response sendMail(@Argument(name = "mail")  MailInput input) throws MessagingException {
         return this.mailerService.sendMailToMaster(input);
     }
 }

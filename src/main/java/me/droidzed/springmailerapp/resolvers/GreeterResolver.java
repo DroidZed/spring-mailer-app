@@ -1,16 +1,17 @@
 package me.droidzed.springmailerapp.resolvers;
 
-import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
-import me.droidzed.springmailerapp.service.GreeterService;
-import org.springframework.stereotype.Component;
+import me.droidzed.springmailerapp.service.greeter.GreeterService;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 @AllArgsConstructor
-public class GreeterResolver implements GraphQLQueryResolver {
+public class GreeterResolver {
 
     private final GreeterService greeterService;
 
+    @QueryMapping
     public String hello() {
         return this.greeterService.greeting();
     }

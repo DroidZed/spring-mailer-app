@@ -1,6 +1,5 @@
-package me.droidzed.springmailerapp.service;
+package me.droidzed.springmailerapp.service.greeter;
 
 public interface GreeterService {
-
     String greeting();
 }

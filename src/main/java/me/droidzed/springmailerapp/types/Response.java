@@ -1,13 +1,13 @@
 package me.droidzed.springmailerapp.types;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 @AllArgsConstructor
+@NoArgsConstructor
 public class Response {
-
     private String msg;
 }

@@ -5,16 +5,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.3</version>
+        <version>2.7.16</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>me.droidzed</groupId>
     <artifactId>spring-mailer-app</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <name>spring-mailer-app</name>
     <description>Spring mailer app for my website</description>
     <properties>
-        <java.version>16</java.version>
+        <java.version>18</java.version>
         <graphql.version>11.1.0</graphql.version>
         <start-class>me.droidzed.springmailerapp.SpringMailerAppApplication</start-class>
     </properties>
@@ -58,9 +58,8 @@
 
         <!-- GraphQL -->
         <dependency>
-            <groupId>com.graphql-java-kickstart</groupId>
-            <artifactId>graphql-spring-boot-starter</artifactId>
-            <version>${graphql.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-graphql</artifactId>
         </dependency>
 
         <!-- Dot Env -->

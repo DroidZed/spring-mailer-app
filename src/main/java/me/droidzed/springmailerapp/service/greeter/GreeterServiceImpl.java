@@ -1,6 +1,5 @@
-package me.droidzed.springmailerapp.impl;
+package me.droidzed.springmailerapp.service.greeter;
 
-import me.droidzed.springmailerapp.service.GreeterService;
 import org.springframework.stereotype.Service;
 
 @Service
