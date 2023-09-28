@@ -1,5 +1,14 @@
 pipeline {
     agent any
+    environment {
+        SMTP_HOST                       = credentials('SMTP_HOST')
+        SMTP_PORT                       = credentials('SMTP_PORT')
+        SMTP_USRNAME                    = credentials('SMTP_USRNAME')
+        SMTP_PASSWORD                   = credentials('SMTP_PASSWORD')
+        TO                              = credentials('TO')
+        SERVER_PORT                     = credentials('SERVER_PORT')
+        IMAGE_TAG_SPRING_MAILER_APP     = credentials('IMAGE_TAG_SPRING_MAILER_APP')
+    }
 
     stages {
         stage('Build') {

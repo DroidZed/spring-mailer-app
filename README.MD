@@ -28,7 +28,7 @@ SMTP_USRNAME=
 SMTP_PASSWORD=
 TO= # Your domain's email
 SERVER_PORT=
-IMAGE_TAG= # docker image tag
+IMAGE_TAG_SPRING_MAILER_APP= # docker image tag
 ```
 
 3. build it:

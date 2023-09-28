@@ -8,8 +8,8 @@ services:
       - SMTP_PASSWORD=${SMTP_PASSWORD}
       - TO=${TO}
       - SERVER_PORT=${SERVER_PORT}
-      - IMAGE_TAG=${IMAGE_TAG}
-    image: droidzed/spring-mailer-app:${IMAGE_TAG}
+      - IMAGE_TAG_SPRING_MAILER_APP=${IMAGE_TAG_SPRING_MAILER_APP}
+    image: droidzed/spring-mailer-app:${IMAGE_TAG_SPRING_MAILER_APP}
     networks:
       - spring-mailer
     container_name: spring-graph-mailer
