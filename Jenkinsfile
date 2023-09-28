@@ -11,6 +11,12 @@ pipeline {
     }
 
     stages {
+	    stage('Clean') {
+            steps {
+                echo 'Cleaning...'
+                sh "mvn clean"
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Validating...'
