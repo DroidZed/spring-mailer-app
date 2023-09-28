@@ -17,6 +17,7 @@
     <properties>
         <java.version>11</java.version>
         <graphql.version>11.1.0</graphql.version>
+        <graphql.test.version>1.0.0</graphql.test.version>
         <start-class>me.droidzed.springmailerapp.SpringMailerAppApplication</start-class>
     </properties>
     <dependencies>
@@ -65,7 +66,7 @@
         <dependency>
             <groupId>org.springframework.graphql</groupId>
             <artifactId>spring-graphql-test</artifactId>
-            <version>1.2.3</version>
+            <version>${graphql.test.version}</version>
             <scope>test</scope>
         </dependency>
 
