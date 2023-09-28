@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.tester.AutoConfigureGraphQlTester;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.graphql.test.tester.GraphQlTester;
-import org.springframework.test.context.ActiveProfiles;
-
-import static java.text.MessageFormat.format;
 
 
 @Slf4j
@@ -25,10 +22,7 @@ class GraphQLServiceTest {
     @Test
     void shouldTheGreetingWorkAndNotThrowAnError() {
 
-        String query = """
-                {
-                \thello
-                }""";
+        String query = "{ hello }";
 
         String confirmationMsg = tester.document(query)
                 .execute()
@@ -42,13 +36,7 @@ class GraphQLServiceTest {
 
     @Test
     void shouldSendingEmailWithMutationWork() {
-        String mutation = """
-                    mutation ($emailInput: MailInput!) {
-                        sendMail(mail: $emailInput) {
-                            msg
-                  }
-                }
-        """;
+        String mutation = "mutation ($emailInput: MailInput!) { sendMail(mail: $emailInput) { msg } }";
 
         MailInput testInput = new MailInput();
 
