@@ -14,22 +14,16 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Validating...'
-                dir('spring-mailer-app') {
-                    sh "mvn validate"
-                }
+                sh "mvn validate"
                 echo 'Compiling...'
-                dir('spring-mailer-app') {
-                    sh "mvn compile"
-                    archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-                }
+                sh "mvn compile"
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                dir('spring-mailer-app') {
-                    sh "mvn test"
-                }
+                sh "mvn test"
             }
         }
         stage('Docker Image') {
