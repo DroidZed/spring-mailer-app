@@ -14,7 +14,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureGraphQlTester
-class GraphQLServiceTest {
+public class GraphQLServiceTest {
 
     @Autowired
     private GraphQlTester tester;
