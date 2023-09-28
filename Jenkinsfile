@@ -17,7 +17,6 @@ pipeline {
                 sh "mvn validate"
                 echo 'Compiling...'
                 sh "mvn compile"
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
         stage('Test') {
