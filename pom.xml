@@ -16,7 +16,6 @@
     <description>Spring mailer app for my website</description>
     <properties>
         <java.version>11</java.version>
-        <graphql.version>11.1.0</graphql.version>
         <graphql.test.version>1.0.0</graphql.test.version>
         <start-class>me.droidzed.springmailerapp.SpringMailerAppApplication</start-class>
     </properties>
