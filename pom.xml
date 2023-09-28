@@ -15,7 +15,7 @@
     <name>spring-mailer-app</name>
     <description>Spring mailer app for my website</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <graphql.version>11.1.0</graphql.version>
         <start-class>me.droidzed.springmailerapp.SpringMailerAppApplication</start-class>
     </properties>
