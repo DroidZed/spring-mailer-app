@@ -15,11 +15,11 @@ pipeline {
             steps {
                 echo 'Validating...'
                 dir('spring-mailer-app') {
-                    sh "make validate"
+                    sh "mvn validate"
                 }
                 echo 'Compiling...'
                 dir('spring-mailer-app') {
-                    sh "make compile"
+                    sh "mvn compile"
                     archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
                 }
             }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 dir('spring-mailer-app') {
-                    sh "make test"
+                    sh "mvn test"
                 }
             }
         }
