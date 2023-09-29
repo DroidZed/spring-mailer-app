@@ -6,8 +6,7 @@ WORKDIR /workspace/app
 
 RUN apk add --no-cache maven
 
-COPY pom.xml .
-COPY src src
+COPY . .
 
 RUN mvn install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)

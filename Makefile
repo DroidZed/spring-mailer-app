@@ -1,3 +1,5 @@
+include .env
+
 compile:
 	mvn compile
 
