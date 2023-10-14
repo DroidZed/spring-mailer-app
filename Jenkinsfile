@@ -8,10 +8,12 @@ pipeline {
         TO                              = credentials('TO')
         SERVER_PORT                     = credentials('SERVER_PORT')
         IMAGE_TAG_SPRING_MAILER_APP     = credentials('IMAGE_TAG_SPRING_MAILER_APP')
+        SONAR_TOKEN                     = credentials('SONAR_TOKEN')
+        DOCKER_PAT                      = credentials('DOCKER_PAT')
     }
 
     stages {
-	    stage('Clean') {
+        stage('Clean') {
             steps {
                 echo 'Cleaning...'
                 sh "mvn clean"
@@ -25,15 +27,28 @@ pipeline {
                 sh "mvn compile"
             }
         }
+        stage('SONAR') {
+            steps {
+                echo 'SonarQube running...'
+                sh "mvn sonar:sonar -Dsonar.token=$SONAR_TOKEN"
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Testing..'
                 sh "mvn test"
             }
         }
-        stage('Docker Image') {
+        stage('Docker Image - Building') {
             steps {
-                echo 'Building the docker image!'
+                echo 'Building the docker image...'
+               // sh "docker build -t droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP ."
+            }
+        }
+        stage('Docker Image - Pushing To Registry') {
+            steps {
+                echo 'Pushing the docker image to docker hub...'
+               // sh "docker push droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
             }
         }
     }

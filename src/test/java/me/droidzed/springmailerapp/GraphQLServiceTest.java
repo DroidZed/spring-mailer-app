@@ -14,7 +14,7 @@ import org.springframework.graphql.test.tester.GraphQlTester;
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureGraphQlTester
-public class GraphQLServiceTest {
+class GraphQLServiceTest {
 
     @Autowired
     private GraphQlTester tester;
@@ -30,6 +30,8 @@ public class GraphQLServiceTest {
                 .entity(String.class)
                 .get();
 
+        log.info(confirmationMsg);
+
         Assertions.assertNotNull(confirmationMsg);
         Assertions.assertNotEquals("", confirmationMsg);
     }
@@ -42,8 +44,8 @@ public class GraphQLServiceTest {
 
         testInput.setFrom("aymen.dhahri@esprit.tn");
         testInput.setName("Spring Mailer App");
-        testInput.setSubject("Test mailer v2");
-        testInput.setBody("Hope this works ! v2");
+        testInput.setSubject("Test mailer with GraphQL");
+        testInput.setBody("This module is hard !");
 
         Response serviceResponse = tester.document(mutation)
                 .variable("emailInput", testInput.toMap())
