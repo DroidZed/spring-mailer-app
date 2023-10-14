@@ -11,7 +11,7 @@ pipeline {
     }
 
     stages {
-	    stage('Clean') {
+        stage('Clean') {
             steps {
                 echo 'Cleaning...'
                 sh "mvn clean"
@@ -25,15 +25,28 @@ pipeline {
                 sh "mvn compile"
             }
         }
+        stage('SONAR') {
+            steps {
+                echo 'SonarQube running...'
+                sh "mvn sonar:sonar"
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Testing..'
                 sh "mvn test"
             }
         }
-        stage('Docker Image') {
+        stage('Docker Image - Building') {
             steps {
-                echo 'Building the docker image!'
+                echo 'Building the docker image...'
+                sh "docker build -t droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP ."
+            }
+        }
+        stage('Docker Image - Pushing To Registry') {
+            steps {
+                echo 'Pushing the docker image to docker hub...'
+                sh "docker push droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
             }
         }
     }
