@@ -13,7 +13,7 @@ import javax.mail.MessagingException;
 
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class MailingServiceTest {
+class MailingServiceTest {
 
     @Autowired
     private MailerService mailerService;
