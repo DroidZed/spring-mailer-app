@@ -9,6 +9,7 @@ pipeline {
         SERVER_PORT                     = credentials('SERVER_PORT')
         IMAGE_TAG_SPRING_MAILER_APP     = credentials('IMAGE_TAG_SPRING_MAILER_APP')
         SONAR_TOKEN                     = credentials('SONAR_TOKEN')
+        DOCKER_PAT                      = credentials('DOCKER_PAT')
     }
 
     stages {
@@ -41,13 +42,13 @@ pipeline {
         stage('Docker Image - Building') {
             steps {
                 echo 'Building the docker image...'
-                sh "docker build -t droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP ."
+               // sh "docker build -t droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP ."
             }
         }
         stage('Docker Image - Pushing To Registry') {
             steps {
                 echo 'Pushing the docker image to docker hub...'
-                sh "docker push droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
+               // sh "docker push droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
             }
         }
     }
