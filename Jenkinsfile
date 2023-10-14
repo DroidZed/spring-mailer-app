@@ -8,6 +8,7 @@ pipeline {
         TO                              = credentials('TO')
         SERVER_PORT                     = credentials('SERVER_PORT')
         IMAGE_TAG_SPRING_MAILER_APP     = credentials('IMAGE_TAG_SPRING_MAILER_APP')
+        SONAR_TOKEN                     = credentials('SONAR_TOKEN')
     }
 
     stages {
@@ -28,7 +29,7 @@ pipeline {
         stage('SONAR') {
             steps {
                 echo 'SonarQube running...'
-                sh "mvn sonar:sonar"
+                sh "mvn sonar:sonar -Dsonar.token=$SONAR_TOKEN"
             }
         }
         stage('Test') {
