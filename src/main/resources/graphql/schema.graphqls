@@ -10,7 +10,7 @@ input MailInput {
 }
 
 type Query {
-    hello : String
+    hello(name: String!) : String
 }
 
 type Mutation {

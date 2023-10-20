@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GreeterServiceImpl implements GreeterService {
     @Override
-    public String greeting() {
-        return "This is used to test if GraphQL works or not.";
+    public String greeting(String name) {
+        return String.format("Good day/evening %s!", name);
     }
 }

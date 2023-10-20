@@ -5,6 +5,7 @@ import me.droidzed.springmailerapp.service.mailer.MailerService;
 import me.droidzed.springmailerapp.types.MailInput;
 import me.droidzed.springmailerapp.types.Response;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +20,8 @@ class MailingServiceTest {
     private MailerService mailerService;
 
     @Test
-    void shouldTheMailingWork() {
+    @DisplayName("Mailer Test")
+    void shouldTheMailingWork() throws MessagingException {
 
         MailInput testInput = new MailInput();
 

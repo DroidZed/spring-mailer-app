@@ -39,6 +39,12 @@ pipeline {
                 sh "mvn test"
             }
         }
+        stage('Nexus') {
+            steps {
+                echo 'Deploying to nexus...'
+                sh "mvn deploy -DskipTests"
+            }
+        }
         stage('Docker Image - Building') {
             steps {
                 echo 'Building the docker image...'
