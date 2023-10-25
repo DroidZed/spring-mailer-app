@@ -1,21 +1,15 @@
 package me.droidzed.springmailerapp;
 
 import lombok.extern.slf4j.Slf4j;
-import me.droidzed.springmailerapp.service.greeter.GreeterService;
-import me.droidzed.springmailerapp.service.greeter.GreeterServiceImpl;
 import me.droidzed.springmailerapp.types.MailInput;
 import me.droidzed.springmailerapp.types.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.tester.AutoConfigureGraphQlTester;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.graphql.test.tester.GraphQlTester;
 
 @Slf4j

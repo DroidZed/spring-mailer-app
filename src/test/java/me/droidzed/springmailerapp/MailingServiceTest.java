@@ -21,7 +21,7 @@ class MailingServiceTest {
 
     @Test
     @DisplayName("Mailer Test")
-    void shouldTheMailingWork() throws MessagingException {
+    void shouldTheMailingWork() {
 
         MailInput testInput = new MailInput();
 
@@ -39,6 +39,5 @@ class MailingServiceTest {
             log.error(e.getMessage());
             Assertions.fail();
         }
-
     }
 }
