@@ -27,16 +27,22 @@ pipeline {
                 sh "mvn compile"
             }
         }
-        stage('SONAR') {
-            steps {
-                echo 'SonarQube running...'
-                sh "mvn sonar:sonar -Dsonar.token=$SONAR_TOKEN"
-            }
-        }
         stage('Test') {
             steps {
                 echo 'Testing..'
                 sh "mvn test"
+            }
+        }
+        stage('Code Coverage') {
+            steps {
+                echo 'Generating code coverage files..'
+                sh "mvn jacoco:report"
+            }
+        }
+        stage('SONAR') {
+            steps {
+                echo 'SonarQube running...'
+                sh "mvn sonar:sonar -Dsonar.token=$SONAR_TOKEN"
             }
         }
         stage('Nexus') {
