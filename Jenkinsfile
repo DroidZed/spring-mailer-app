@@ -10,6 +10,7 @@ pipeline {
         IMAGE_TAG_SPRING_MAILER_APP     = credentials('IMAGE_TAG_SPRING_MAILER_APP')
         SONAR_TOKEN                     = credentials('SONAR_TOKEN')
         DOCKER_PAT                      = credentials('DOCKER_PAT')
+        DOCKER_USERNAME                 = 'droidzed'
     }
 
     stages {
@@ -60,6 +61,7 @@ pipeline {
         stage('Docker Image - Pushing To Registry') {
             steps {
                 echo 'Pushing the docker image to docker hub...'
+                sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PAT"
                 sh "docker push droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
             }
         }
