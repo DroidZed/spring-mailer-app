@@ -9,8 +9,7 @@ pipeline {
         SERVER_PORT                     = credentials('SERVER_PORT')
         IMAGE_TAG_SPRING_MAILER_APP     = credentials('IMAGE_TAG_SPRING_MAILER_APP')
         SONAR_TOKEN                     = credentials('SONAR_TOKEN')
-        DOCKER_PAT                      = credentials('DOCKER_PAT')
-        dockerUsername                  = 'droidzed'
+        dockerCredentials               = 'DOCKER_CREDS'
         registry                        = 'droidzed/spring-mailer-app'
         dockerImage                     = "droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
         DISCORD_WEBHOOK_URL             = credentials("DISCORD_WEBHOOK_URL")
@@ -56,10 +55,10 @@ pipeline {
         stage('Docker Image - Pushing To Registry') {
             steps {
                 echo 'Pushing the docker image to docker hub...'
-                // sh "docker login -u $dockerUsername -p $DOCKER_PAT"
+                // sh "docker login -u droidzed -p $DOCKER_PAT"
                 // sh "docker push droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
                 script {
-                     docker.withRegistry( '', dockerUsername) { 
+                     docker.withRegistry( '', dockerCredentials) { 
                         dockerImage.push() 
                      }
                 }
