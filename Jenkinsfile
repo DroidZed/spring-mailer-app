@@ -104,9 +104,7 @@ pipeline {
         }
         stage("Discord Notify") {
             steps {
-                script {
-                    discordSend description: "Pipeline ran successfully!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
-                }
+                discordSend description: "Pipeline ran successfully!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
             }
         }
     }
