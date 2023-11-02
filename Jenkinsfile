@@ -73,7 +73,7 @@ pipeline {
         stage('SONAR') {
             steps {
                 echo 'SonarQube running...'
-                sh "mvn sonar:sonar -Dsonar.token=$SONAR_TOKEN"
+                sh "mvn sonar:sonar -Dsonar.username=admin -Dsonar.password=admin"
             }
         }
         stage('Nexus') {
