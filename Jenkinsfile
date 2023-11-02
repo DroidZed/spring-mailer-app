@@ -50,6 +50,10 @@ pipeline {
                 script { 
                     dockerImage = docker.build registry + ":$IMAGE_TAG_SPRING_MAILER_APP" 
                 }
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    discordSend description: "Jenkins Pipeline Build: Docker image build failed!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                    sh "exit 1"
+                }
             }
         }
         stage('Docker Image - Pushing To Registry') {
@@ -62,18 +66,19 @@ pipeline {
                         dockerImage.push() 
                      }
                 }
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    discordSend description: "Jenkins Pipeline Build: Push to Docker hub failed!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                    sh "exit 1"
+                }
             }
         }
         stage("Octopus") {
             steps {
-			    echo 'Running in compose!'
+                echo 'Running in compose!'
                 sh "docker compose up -d"
-            }
-        }
-        stage("Discord Notify - Octopus") {
-            steps {
-                script {
-                    discordSend description: "Jenkins Pipeline Build: Docker compose ran successfully!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    discordSend description: "Jenkins Pipeline Build: Octopus failed!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                    sh "exit 1"
                 }
             }
         }
@@ -81,12 +86,9 @@ pipeline {
             steps {
                 echo 'SonarQube running...'
                 sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin"
-            }
-        }
-		stage("Discord Notify - SONAR") {
-            steps {
-                script {
-                    discordSend description: "Jenkins Pipeline Build: Sonar ran successfully!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    discordSend description: "Jenkins Pipeline Build: Sonar failed!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                    sh "exit 1"
                 }
             }
         }
@@ -94,12 +96,16 @@ pipeline {
             steps {
                 echo 'Deploying to nexus...'
                 sh "mvn deploy -DskipTests"
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    discordSend description: "Jenkins Pipeline Build: Nexus failed!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                    sh "exit 1"
+                }
             }
         }
-        stage("Discord Notify - NEXUS") {
+        stage("Discord Notify") {
             steps {
                 script {
-                    discordSend description: "Jenkins Pipeline Build: Nexus ran successfully!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                    discordSend description: "Pipeline ran successfully!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
                 }
             }
         }
