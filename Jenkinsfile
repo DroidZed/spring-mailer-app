@@ -66,8 +66,8 @@ pipeline {
             }
         }
         stage("Octopus") {
-            echo 'Running in compose!'
             steps {
+			    echo 'Running in compose!'
                 sh "docker-compose up -d"
             }
         }
