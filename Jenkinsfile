@@ -75,7 +75,7 @@ pipeline {
         stage("Octopus") {
             steps {
                 echo 'Running in compose!'
-                sh "docker compose up -d"
+                sh "docker compose start -d"
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     discordSend description: "Jenkins Pipeline Build: Octopus failed!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
                     sh "exit 1"
