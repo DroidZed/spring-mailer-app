@@ -1,5 +1,25 @@
-version: '3'
+version: '3.8'
 services:
+  nexus:
+    image: sonatype/nexus3
+    ports:
+      - '8001:8001'
+    container_name: nex
+    networks:
+      - spring-mailer
+    volumes:
+      - nexus-data:/nexus-data
+  sonar:
+    image: sonarqube
+    networks:
+      - spring-mailer
+    ports:
+      - '9000:9000'
+      - '9092:9092'
+    volumes:
+      - SonarQube_Data:/opt/SonarQube/data
+      - SonarQube_logs:/opt/SonarQube/logs
+      - SonarQube_extensions:/opt/SonarQube/extensions
   spring-mailer-app:
     environment:
       - SMTP_HOST=${SMTP_HOST}
@@ -14,8 +34,13 @@ services:
       - spring-mailer
     container_name: spring-graph-mailer
     ports:
-      - ${SERVER_PORT}:${SERVER_PORT}
+      - "${SERVER_PORT}:${SERVER_PORT}"
 
 networks:
   spring-mailer:
     driver: bridge
+volumes:
+  nexus-data:
+  SonarQube_Data:
+  SonarQube_extensions:
+  SonarQube_logs:
