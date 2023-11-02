@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     environment {
         SMTP_HOST                       = credentials('SMTP_HOST')
         SMTP_PORT                       = credentials('SMTP_PORT')
@@ -8,10 +9,9 @@ pipeline {
         TO                              = credentials('TO')
         SERVER_PORT                     = credentials('SERVER_PORT')
         IMAGE_TAG_SPRING_MAILER_APP     = credentials('IMAGE_TAG_SPRING_MAILER_APP')
-        SONAR_TOKEN                     = credentials('SONAR_TOKEN')
         dockerCredentials               = 'DOCKER_CREDS'
         registry                        = 'droidzed/spring-mailer-app'
-        dockerImage                     = "droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
+        dockerImage                     = ''
         DISCORD_WEBHOOK_URL             = credentials("DISCORD_WEBHOOK_URL")
         JOB_NAME                        = "Spring-Mailer-App"
     }
@@ -58,7 +58,7 @@ pipeline {
                 // sh "docker login -u droidzed -p $DOCKER_PAT"
                 // sh "docker push droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
                 script {
-                     docker.withRegistry( '', dockerCredentials) { 
+                     docker.withRegistry('', dockerCredentials) { 
                         dockerImage.push() 
                      }
                 }
@@ -70,10 +70,24 @@ pipeline {
                 sh "docker compose up -d"
             }
         }
+        stage("Discord Notify - Octopus") {
+            steps {
+                script {
+                    discordSend description: "Jenkins Pipeline Build: Docker compose ran successfully!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                }
+            }
+        }
         stage('SONAR') {
             steps {
                 echo 'SonarQube running...'
-                sh "mvn sonar:sonar -Dsonar.username=admin -Dsonar.password=admin"
+                sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin"
+            }
+        }
+		stage("Discord Notify - SONAR") {
+            steps {
+                script {
+                    discordSend description: "Jenkins Pipeline Build: Sonar ran successfully!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                }
             }
         }
         stage('Nexus') {
@@ -82,10 +96,10 @@ pipeline {
                 sh "mvn deploy -DskipTests"
             }
         }
-        stage("Discord Notify") {
+        stage("Discord Notify - NEXUS") {
             steps {
                 script {
-                    discordSend description: "Jenkins Pipeline Build", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                    discordSend description: "Jenkins Pipeline Build: Nexus ran successfully!", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
                 }
             }
         }
