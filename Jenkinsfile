@@ -10,7 +10,11 @@ pipeline {
         IMAGE_TAG_SPRING_MAILER_APP     = credentials('IMAGE_TAG_SPRING_MAILER_APP')
         SONAR_TOKEN                     = credentials('SONAR_TOKEN')
         DOCKER_PAT                      = credentials('DOCKER_PAT')
-        DOCKER_USERNAME                 = 'droidzed'
+        dockerUsername                  = 'droidzed'
+        registry                        = 'droidzed/spring-mailer-app'
+        dockerImage                     = "droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
+        DISCORD_WEBHOOK_URL             = credentials("DISCORD_WEBHOOK_URL")
+        JOB_NAME                        = "Spring-Mailer-App"
     }
 
     stages {
@@ -40,6 +44,33 @@ pipeline {
                 sh "mvn jacoco:report"
             }
         }
+        stage('Docker Image - Building') {
+            steps {
+                echo 'Building the docker image...'
+                // sh "docker build -t droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP ."
+                script { 
+                    dockerImage = docker.build registry + ":$IMAGE_TAG_SPRING_MAILER_APP" 
+                }
+            }
+        }
+        stage('Docker Image - Pushing To Registry') {
+            steps {
+                echo 'Pushing the docker image to docker hub...'
+                // sh "docker login -u $dockerUsername -p $DOCKER_PAT"
+                // sh "docker push droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
+                script {
+                     docker.withRegistry( '', dockerUsername) { 
+                        dockerImage.push() 
+                     }
+                }
+            }
+        }
+        stage("Octopus") {
+            echo 'Running in compose!'
+            steps {
+                sh "docker-compose up -d"
+            }
+        }
         stage('SONAR') {
             steps {
                 echo 'SonarQube running...'
@@ -52,17 +83,11 @@ pipeline {
                 sh "mvn deploy -DskipTests"
             }
         }
-        stage('Docker Image - Building') {
+        stage("Discord Notify") {
             steps {
-                echo 'Building the docker image...'
-                sh "docker build -t droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP ."
-            }
-        }
-        stage('Docker Image - Pushing To Registry') {
-            steps {
-                echo 'Pushing the docker image to docker hub...'
-                sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PAT"
-                sh "docker push droidzed/spring-mailer-app:$IMAGE_TAG_SPRING_MAILER_APP"
+                script {
+                    discordSend description: "Jenkins Pipeline Build", footer: "Ran From Localhost", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: ":$DISCORD_WEBHOOK_URL"
+                }
             }
         }
     }
