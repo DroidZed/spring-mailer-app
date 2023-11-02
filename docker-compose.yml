@@ -11,6 +11,7 @@ services:
       - nexus-data:/nexus-data
   sonar:
     image: sonarqube
+    container_name: sqube
     networks:
       - spring-mailer
     ports:
