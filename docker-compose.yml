@@ -3,7 +3,7 @@ services:
   nexus:
     image: sonatype/nexus3
     ports:
-      - '8001:8001'
+      - '8081:8081'
     container_name: nex
     networks:
       - spring-mailer
@@ -22,6 +22,9 @@ services:
       - SonarQube_logs:/opt/SonarQube/logs
       - SonarQube_extensions:/opt/SonarQube/extensions
   spring-mailer-app:
+    depends_on:
+      - nexus
+      - sonar
     environment:
       - SMTP_HOST=${SMTP_HOST}
       - SMTP_PORT=${SMTP_PORT}
