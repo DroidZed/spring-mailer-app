@@ -4,51 +4,19 @@ networks:
   spring-mailer:
     driver: bridge
 
-volumes:
-  nexus-data:
-  SonarQube_Data:
-  SonarQube_extensions:
-  SonarQube_logs:
-
-
 services:
-  nexus:
-    image: sonatype/nexus3
-    ports:
-      - '8081:8081'
-    container_name: nex
+  spring-mailer-app:
+    environment:
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USRNAME=${SMTP_USRNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - TO=${TO}
+      - SERVER_PORT=${SERVER_PORT}
+      - IMAGE_TAG_SPRING_MAILER_APP=${IMAGE_TAG_SPRING_MAILER_APP}
+    image: droidzed/spring-mailer-app:${IMAGE_TAG_SPRING_MAILER_APP}
     networks:
       - spring-mailer
-    volumes:
-      - nexus-data:/nexus-data
-
-  sonar:
-    image: sonarqube
-    container_name: sqube
-    networks:
-      - spring-mailer
+    container_name: spring-graph-mailer
     ports:
-      - '9000:9000'
-      - '9092:9092'
-    volumes:
-      - SonarQube_Data:/opt/SonarQube/data
-      - SonarQube_logs:/opt/SonarQube/logs
-      - SonarQube_extensions:/opt/SonarQube/extensions
-    # spring-mailer-app:
-    #   depends_on:
-    #     - nexus
-    #     - sonar
-    #   environment:
-    #     - SMTP_HOST=${SMTP_HOST}
-    #     - SMTP_PORT=${SMTP_PORT}
-    #     - SMTP_USRNAME=${SMTP_USRNAME}
-    #     - SMTP_PASSWORD=${SMTP_PASSWORD}
-    #     - TO=${TO}
-    #     - SERVER_PORT=${SERVER_PORT}
-    #     - IMAGE_TAG_SPRING_MAILER_APP=${IMAGE_TAG_SPRING_MAILER_APP}
-    #   image: droidzed/spring-mailer-app:${IMAGE_TAG_SPRING_MAILER_APP}
-    # networks:
-    #   - spring-mailer
-    # container_name: spring-graph-mailer
-    # ports:
-    #   - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${SERVER_PORT}:${SERVER_PORT}"

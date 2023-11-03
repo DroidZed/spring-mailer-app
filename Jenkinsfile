@@ -12,6 +12,7 @@ pipeline {
         dockerCredentials               = 'DOCKER_CREDS'
         registry                        = 'droidzed/spring-mailer-app'
         dockerImage                     = ''
+        SONAR_TOKEN                     = credentials('SONAR_TOKEN')
         DISCORD_WEBHOOK_URL             = credentials("DISCORD_WEBHOOK_URL")
         JOB_NAME                        = "Spring-Mailer-App"
     }
@@ -80,7 +81,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     echo 'SonarQube running...'
-                    sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin"
+                    sh "mvn sonar:sonar -Dsonar.token=$SONAR_TOKEN"
                 }
             }
         }
